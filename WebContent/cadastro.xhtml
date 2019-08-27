@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Cadastro teste</title>
+</h:head>
+<h:body>
+	<h1>Cadastro</h1>
+	
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Nome Completo: " />
+			<h:inputText value="#{cadastroController.cadastroModel.nome}" />
+			
+			<h:outputLabel value="Login: "/>
+			<h:inputText value="#{cadastroController.cadastroModel.login}" />
+			
+			<h:outputLabel value="Senha: "/>
+			<h:inputSecret value="#{cadastroController.cadastroModel.senha}" />
+						
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+		
+			<h:commandButton value="Incluir" actionListener="#{cadastroController.incluir}" />
+			<h:commandButton value="Limpar" actionListener="#{cadastroController.limpar}" />
+	
+		</h:panelGrid>
+	</h:form>
+	<h:form>
+		<h:dataTable value="#{cadastroController.listaCadastroModel}" var="listarObj">
+			<!-- COLUNA 1 (NOME COMPLETO) -->
+			<h:column>
+				<f:facet name="header">Nome completo</f:facet>
+				<h:commandLink value="#{listarObj.nome}" actionListener="#{cadastroController.editar(listarObj)}" />
+			</h:column>
+			<!-- COLUNA 2 (LOGIN) -->
+			<h:column>
+				<f:facet name="header">Login</f:facet>
+				<h:outputLabel value="#{listarObj.login}" />
+			</h:column>
+			<!-- COLUNA 3 (SENHA) -->
+			<h:column>
+				<f:facet name="header">Senha</f:facet>
+				<h:outputLabel value="#{listarObj.senha}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+	
+</h:body>
+</html>
